@@ -1,0 +1,51 @@
+## Ignore Visual Studio temporary files, build results, and
+## user-specific files
+
+# Build results
+bin/
+obj/
+out/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ASP.NET Core
+appsettings.*.json
+secrets.json
+
+# Docker
+**/Dockerfile
+**/docker-compose*.yml
+**/docker-compose*.override.yml
+
+# Logs
+*.log
+logs/
+*.nlog
+
+# Others
+*.db
+*.sqlite
+*.pdb
+*.DS_Store
+Thumbs.db
+
+# EF Core Migrations (optional: keep this if you want to ignore DB schema history)
+Migrations/
+
+# Test results
+TestResults/
