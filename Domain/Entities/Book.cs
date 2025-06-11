@@ -6,4 +6,5 @@ public class Book
     public string Title { get; set; } = default!;
     public int AuthorId { get; set; }
     public Author Author { get; set; } = default!;
+
 }

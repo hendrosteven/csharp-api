@@ -26,7 +26,25 @@ public class BooksController(AppDbContext context, IMapper mapper) : ControllerB
         {
             return NotFound();
         }
+
+        // var bookDto = new BookDto
+        // {
+        //     Id = book.Id,
+        //     Title = book.Title,
+        //     AuthorName = book.Author.Name,
+        //     AuthorId = book.Author.Id
+        //     // Map other properties as needed
+        // };
+
         var bookDto = mapper.Map<BookDto>(book);
         return Ok(bookDto);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetAll()
+    {
+        var books = await context.Books.Include(b => b.Author).ToListAsync();
+        var bookDtos = mapper.Map<IEnumerable<BookDto>>(books);
+        return Ok(bookDtos);
     }
 }
