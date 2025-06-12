@@ -32,5 +32,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.MapGet("/", () => $"Hello from {Environment.MachineName}");
+
 app.MapControllers();
 app.Run();
