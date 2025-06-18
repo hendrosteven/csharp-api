@@ -16,13 +16,15 @@ services:
       retries: 5
     networks:
       - app-net
+    volumes:
+      - db_data:/var/lib/postgresql/data
 
   api:
     build:
       context: .
       dockerfile: Dockerfile
-    expose:
-      - "8080"   # Internal only; no need to bind to host
+    ports:
+      - "8080:8080"   
     depends_on:
       db:
         condition: service_healthy
@@ -31,18 +33,20 @@ services:
     networks:
       - app-net
 
-  nginx:
-    image: nginx:alpine
-    ports:
-      - "8081:80"
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-    depends_on:
-      - api
-    networks:
-      - app-net
+  # nginx:
+  #   image: nginx:alpine
+  #   ports:
+  #     - "8081:80"
+  #   volumes:
+  #     - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+  #   depends_on:
+  #     - api
+  #   networks:
+  #     - app-net
 
 networks:
   app-net:
 
-
+volumes:
+  db_data:
+    driver: local
